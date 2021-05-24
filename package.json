@@ -1,0 +1,20 @@
+{
+    "name": "mai3-arb-bridge-graph",
+    "version": "0.1.0",
+    "scripts": {
+      "prepare:kovan": "mustache config/kovan.json subgraph.templatel1.yaml > subgraph.yaml",
+      "prepare:arb": "mustache config/arb.json subgraph.templatel2.yaml > subgraph.yaml",
+      "create": "graph create mcdexio/mai3-arb-bridge --node https://api.thegraph.com/deploy/",
+      "create-local": "graph create mcdexio/mai3-arb-bridge --node http://10.30.206.10:9020",
+      "create-arb": "graph create mcdexio/mai3-arb-bridge --node http://47.254.123.161:8020",
+      "codegen": "graph codegen",
+      "build": "graph build",
+      "deploy": "graph deploy mcdexio/mcdex3-arb-bridge-kovan1 --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
+      "deploy-local": "graph deploy mcdexio/mai3-arb-bridge --ipfs http://10.30.206.10:5001 --node http://10.30.206.10:9020",
+      "deploy-arb": "graph deploy mcdexio/mai3-arb-bridge --ipfs http://47.251.38.29:5001 --node http://47.254.123.161:8020"
+    },
+    "devDependencies": {
+      "@graphprotocol/graph-cli": "^0.18.0",
+      "@graphprotocol/graph-ts": "^0.18.0"
+    }
+  }

@@ -1,0 +1,34 @@
+specVersion: 0.0.2
+description: mai3-arb-bridge
+repository: https://github.com/mcdexio/mai3-arb-bridge-graph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: mai3-arb-bridge
+    network: {{network}}
+    source:
+      address: '{{bridge_address}}'
+      abi: Bridge
+      startBlock: {{start_block}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Deposit
+      abis:
+        - name: Bridge
+          file: ./abis/Bridge.json
+      eventHandlers:
+        - event: DepositToken(indexed address,address,indexed uint256,uint256,indexed address)
+          handler: handleDepositToken
+        - event: ActivateCustomToken(indexed uint256,indexed address,address)
+          handler: handleActivateCustomToken
+        - event: DeployToken(indexed uint256,indexed address)
+          handler: handleDeployToken
+        - event: WithdrawRedirected(indexed address,indexed address,address,uint256,indexed uint256)
+          handler: handleWithdrawRedirected
+        - event: WithdrawExecuted(indexed address,indexed address,address,uint256,indexed uint256)
+          handler: handleWithdrawExecuted
+      file: ./src/core.ts

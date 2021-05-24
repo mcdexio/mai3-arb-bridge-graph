@@ -1,0 +1,49 @@
+type Deposit @entity {
+  id: ID!
+  destination: String!
+  sender: String!
+  value: BigInt!
+  tokenAddress: String!
+}
+
+type ActivateCustomToken @entity {
+  id: ID!
+  l1Address: String!
+  l2Address: String!
+}
+type CustomTokenRegistered @entity {
+  id: ID!
+  l2Address: String!
+}
+type TokenCreated @entity {
+  id: ID!
+  l2Address: String!
+}
+
+type DeployToken @entity {
+  id: ID!
+  l1Address: String!
+}
+
+type WithdrawRedirected @entity {
+  id: ID!
+  user: String!
+  liquidityProvider: String!
+  erc20: String!
+  amount: BigInt!
+}
+type WithdrawExecuted @entity {
+  id: ID!
+  initialDestination: String!
+  destination: String!
+  erc20: String!
+  amount: BigInt!
+}
+
+type WithdrawToken @entity {
+  id: ID!
+  l1Address: String!
+  destination: String!
+  exitNum: BigInt!
+  amount: BigInt!
+}

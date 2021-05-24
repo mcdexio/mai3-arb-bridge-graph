@@ -1,0 +1,203 @@
+[
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "withdrawalId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "name": "l1Address",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "name": "destination",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "exitNum",
+          "type": "uint256"
+        }
+      ],
+      "name": "WithdrawToken",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "l1Address",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "l2Address",
+          "type": "address"
+        }
+      ],
+      "name": "CustomTokenRegistered",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "l1Address",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "l2Address",
+          "type": "address"
+        }
+      ],
+      "name": "TokenCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "seqNum",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "name": "l1Address",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "l2Address",
+          "type": "address"
+        }
+      ],
+      "name": "ActivateCustomToken",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "seqNum",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "name": "l1Address",
+          "type": "address"
+        }
+      ],
+      "name": "DeployToken",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "liquidityProvider",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "erc20",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "name": "exitNum",
+          "type": "uint256"
+        }
+      ],
+      "name": "WithdrawRedirected",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "initialDestination",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "destination",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "erc20",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "name": "exitNum",
+          "type": "uint256"
+        }
+      ],
+      "name": "WithdrawExecuted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "destination",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "seqNum",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "name": "tokenAddress",
+          "type": "address"
+        }
+      ],
+      "name": "DepositToken",
+      "type": "event"
+    }
+]
