@@ -1,5 +1,5 @@
 import { BigInt, ethereum, log, Address } from "@graphprotocol/graph-ts"
-import { WithdrawToken, TokenCreated, CustomTokenRegistered, Deposit, ActivateCustomToken, DeployToken, WithdrawRedirected, WithdrawExecuted } from '../generated/schema';
+import { WithdrawToken, TokenCreated, CustomTokenRegistered, Deposit, MintAndCallTriggered, ActivateCustomToken, DeployToken, WithdrawRedirected, WithdrawExecuted } from '../generated/schema';
 import {
   DepositToken,
   ActivateCustomToken as ActivateCustomTokenEvent,
@@ -9,6 +9,7 @@ import {
   CustomTokenRegistered as CustomTokenRegisteredEvent,
   TokenCreated as TokenCreatedEvent,
   WithdrawToken as WithdrawTokenEvent,
+  MintAndCallTriggered as MintAndCallTriggeredEvent
 } from '../generated/mai3-arb-bridge/Bridge';
 
 export function handleDepositToken(event: DepositToken): void {
@@ -70,4 +71,13 @@ export function handleWithdrawToken(event: WithdrawTokenEvent): void {
   withdraw.exitNum = event.params.exitNum
   withdraw.amount = event.params.amount
   withdraw.save()
+}
+
+export function handleMintAndCallTriggered(event: MintAndCallTriggeredEvent): void {
+    let mint = new MintAndCallTriggered(event.params.withdrawalId.toString())
+    mint.sucess = event.params.sucess
+    mint.sender = event.params.sender.toHexString()
+    mint.dest = event.params.dest.toHexString()
+    mint.amount = event.params.amount
+    mint.save()
 }

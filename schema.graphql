@@ -47,3 +47,11 @@ type WithdrawToken @entity {
   exitNum: BigInt!
   amount: BigInt!
 }
+
+type MintAndCallTriggered @entity {
+  id: ID!
+  success: Boolean!
+  sender: String!
+  dest: String!
+  amount: BigInt!
+}

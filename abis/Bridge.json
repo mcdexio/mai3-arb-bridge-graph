@@ -1,5 +1,37 @@
 [
     {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "name": "success",
+            "type": "bool"
+          },
+          {
+            "indexed": true,
+            "name": "sender",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "name": "dest",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "name": "callHookData",
+            "type": "bytes"
+          }
+        ],
+        "name": "MintAndCallTriggered",
+        "type": "event"
+    },
+    {
       "anonymous": false,
       "inputs": [
         {

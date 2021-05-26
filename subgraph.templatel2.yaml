@@ -27,4 +27,6 @@ dataSources:
           handler: handleTokenCreated
         - event: WithdrawToken(uint256,indexed address,uint256,indexed address,indexed uint256)
           handler: handleWithdrawToken
+        - event: MintAndCallTriggered(bool,indexed address,indexed address,uint256,bytes)
+          handler: handleMintAndCallTriggered
       file: ./src/core.ts
