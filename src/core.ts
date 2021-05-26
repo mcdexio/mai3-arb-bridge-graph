@@ -9,7 +9,7 @@ import {
   CustomTokenRegistered as CustomTokenRegisteredEvent,
   TokenCreated as TokenCreatedEvent,
   WithdrawToken as WithdrawTokenEvent,
-} from '../generated/arb5-bridge/ERC20';
+} from '../generated/mai3-arb-bridge/Bridge';
 
 export function handleDepositToken(event: DepositToken): void {
   let deposit= new Deposit(event.params.seqNum.toString())
