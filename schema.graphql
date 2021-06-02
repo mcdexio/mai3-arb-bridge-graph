@@ -66,3 +66,16 @@ type MintAndCallTriggered @entity {
   amount: BigInt!
   blockNumber: BigInt!
 }
+
+type L2ToL1Transaction @entity {
+  id: ID!
+  caller: String!
+  destination: String!
+  uniqueId: BigInt!
+  batchNumber: BigInt!
+  indexInBatch: BigInt!
+  arbBlockNum: BigInt!
+  ethBlockNum: BigInt!
+  timestamp: BigInt!
+  callvalue: BigInt!
+}

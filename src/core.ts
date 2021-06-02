@@ -1,5 +1,5 @@
 import { BigInt, ethereum, log, Address } from "@graphprotocol/graph-ts"
-import { WithdrawToken, TokenCreated, CustomTokenRegistered, Deposit, MintAndCallTriggered, ActivateCustomToken, DeployToken, WithdrawRedirected, WithdrawExecuted } from '../generated/schema';
+import { WithdrawToken, TokenCreated, CustomTokenRegistered, Deposit, MintAndCallTriggered, L2ToL1Transaction, ActivateCustomToken, DeployToken, WithdrawRedirected, WithdrawExecuted } from '../generated/schema';
 import {
   DepositToken,
   ActivateCustomToken as ActivateCustomTokenEvent,
@@ -9,7 +9,8 @@ import {
   CustomTokenRegistered as CustomTokenRegisteredEvent,
   TokenCreated as TokenCreatedEvent,
   WithdrawToken as WithdrawTokenEvent,
-  MintAndCallTriggered as MintAndCallTriggeredEvent
+  MintAndCallTriggered as MintAndCallTriggeredEvent,
+  L2ToL1Transaction as L2ToL1TransactionEvent
 } from '../generated/mai3-arb-bridge/Bridge';
 
 export function handleDepositToken(event: DepositToken): void {
@@ -91,4 +92,17 @@ export function handleMintAndCallTriggered(event: MintAndCallTriggeredEvent): vo
     mint.amount = event.params.amount
     mint.blockNumber = event.block.number
     mint.save()
+}
+
+export function handleL2ToL1Transaction(event: L2ToL1TransactionEvent): void {
+    let transaction = new L2ToL1Transaction(event.block.number.toString())
+    transaction.caller = event.params.caller.toHexString()
+    transaction.destination = event.params.destination.toHexString()
+    transaction.uniqueId = event.params.uniqueId
+    transaction.batchNumber = event.params.batchNumber
+    transaction.indexInBatch = event.params.indexInBatch
+    transaction.arbBlockNum = event.params.arbBlockNum
+    transaction.ethBlockNum = event.params.ethBlockNum
+    transaction.timestamp = event.params.timestamp
+    transaction.callvalue = event.params.callvalue
 }
