@@ -18,12 +18,14 @@ export function handleDepositToken(event: DepositToken): void {
   deposit.sender = event.params.sender.toHexString()
   deposit.value = event.params.value
   deposit.tokenAddress = event.params.tokenAddress.toHexString()
+  deposit.blockNumber = event.block.number
   deposit.save()
 }
 
 export function handleDeployToken(event: DeployTokenEvent): void {
   let deploy = new DeployToken(event.params.seqNum.toString())
   deploy.l1Address = event.params.l1Address.toHexString()
+  deploy.blockNumber = event.block.number
   deploy.save()
 }
 
@@ -31,18 +33,21 @@ export function handleActivateCustomToken(event: ActivateCustomTokenEvent): void
   let activate = new ActivateCustomToken(event.params.seqNum.toString())
   activate.l1Address = event.params.l1Address.toHexString()
   activate.l2Address = event.params.l2Address.toHexString()
+  activate.blockNumber = event.block.number
   activate.save()
 }
 
 export function handleCustomTokenRegistered(event: CustomTokenRegisteredEvent): void {
   let custom = new CustomTokenRegistered(event.params.l1Address.toHexString())
   custom.l2Address = event.params.l2Address.toHexString()
+  custom.blockNumber = event.block.number
   custom.save()
 }
 
 export function handleTokenCreated(event: TokenCreatedEvent): void {
   let created = new TokenCreated(event.params.l1Address.toHexString())
   created.l2Address = event.params.l2Address.toHexString()
+  created.blockNumber = event.block.number
   created.save()
 }
 
@@ -52,6 +57,8 @@ export function handleWithdrawRedirected(event: WithdrawRedirectedEvent): void {
   withdraw.liquidityProvider = event.params.liquidityProvider.toHexString()
   withdraw.erc20 = event.params.erc20.toHexString()
   withdraw.amount = event.params.amount
+  withdraw.exitNum = event.params.exitNum
+  withdraw.blockNumber = event.block.number
   withdraw.save()
 }
 
@@ -61,6 +68,8 @@ export function handleWithdrawExecuted(event: WithdrawExecutedEvent): void {
   withdraw.destination = event.params.destination.toHexString()
   withdraw.erc20 = event.params.erc20.toHexString()
   withdraw.amount = event.params.amount
+  withdraw.exitNum = event.params.exitNum
+  withdraw.blockNumber = event.block.number
   withdraw.save()
 }
 
@@ -70,6 +79,7 @@ export function handleWithdrawToken(event: WithdrawTokenEvent): void {
   withdraw.destination = event.params.destination.toHexString()
   withdraw.exitNum = event.params.exitNum
   withdraw.amount = event.params.amount
+  withdraw.blockNumber = event.block.number
   withdraw.save()
 }
 
@@ -79,5 +89,6 @@ export function handleMintAndCallTriggered(event: MintAndCallTriggeredEvent): vo
     mint.sender = event.params.sender.toHexString()
     mint.dest = event.params.dest.toHexString()
     mint.amount = event.params.amount
+    mint.blockNumber = event.block.number
     mint.save()
 }

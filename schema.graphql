@@ -4,25 +4,30 @@ type Deposit @entity {
   sender: String!
   value: BigInt!
   tokenAddress: String!
+  blockNumber: BigInt!
 }
 
 type ActivateCustomToken @entity {
   id: ID!
   l1Address: String!
   l2Address: String!
+  blockNumber: BigInt!
 }
 type CustomTokenRegistered @entity {
   id: ID!
   l2Address: String!
+  blockNumber: BigInt!
 }
 type TokenCreated @entity {
   id: ID!
   l2Address: String!
+  blockNumber: BigInt!
 }
 
 type DeployToken @entity {
   id: ID!
   l1Address: String!
+  blockNumber: BigInt!
 }
 
 type WithdrawRedirected @entity {
@@ -31,6 +36,8 @@ type WithdrawRedirected @entity {
   liquidityProvider: String!
   erc20: String!
   amount: BigInt!
+  exitNum: BigInt!
+  blockNumber: BigInt!
 }
 type WithdrawExecuted @entity {
   id: ID!
@@ -38,6 +45,8 @@ type WithdrawExecuted @entity {
   destination: String!
   erc20: String!
   amount: BigInt!
+  exitNum: BigInt!
+  blockNumber: BigInt!
 }
 
 type WithdrawToken @entity {
@@ -46,6 +55,7 @@ type WithdrawToken @entity {
   destination: String!
   exitNum: BigInt!
   amount: BigInt!
+  blockNumber: BigInt!
 }
 
 type MintAndCallTriggered @entity {
@@ -54,4 +64,5 @@ type MintAndCallTriggered @entity {
   sender: String!
   dest: String!
   amount: BigInt!
+  blockNumber: BigInt!
 }
