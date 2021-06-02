@@ -8,9 +8,35 @@ dataSources:
     name: mai3-arb-bridge
     network: {{network}}
     source:
-      address: '{{bridge_address}}'
+      address: '{{erc20_bridge_address}}'
       abi: Bridge
-      startBlock: {{start_block}}
+      startBlock: {{erc20_start_block}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Deposit
+      abis:
+        - name: Bridge
+          file: ./abis/Bridge.json
+      eventHandlers:
+        - event: CustomTokenRegistered(indexed address,indexed address)
+          handler: handleCustomTokenRegistered
+        - event: TokenCreated(indexed address,indexed address)
+          handler: handleTokenCreated
+        - event: WithdrawToken(uint256,indexed address,uint256,indexed address,indexed uint256)
+          handler: handleWithdrawToken
+        - event: MintAndCallTriggered(bool,indexed address,indexed address,uint256,bytes)
+          handler: handleMintAndCallTriggered
+      file: ./src/core.ts
+  - kind: ethereum/contract
+    name: mai3-arb-bridge-eth
+    network: {{network}}
+    source:
+      address: '{{eth_bridge_address}}'
+      abi: Bridge
+      startBlock: {{eth_start_block}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

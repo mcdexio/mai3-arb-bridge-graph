@@ -1,5 +1,7 @@
 {
     "network": "arb",
-    "bridge_address": "0x2EEBB8EE9c377caBC476654ca4aba016ECA1B9fc",
-    "start_block": 200
+    "erc20_bridge_address": "0x2EEBB8EE9c377caBC476654ca4aba016ECA1B9fc",
+    "eth_bridge_address": "0x0000000000000000000000000000000000000064",
+    "erc20_start_block": 200,
+    "eth_start_block": 200
 }

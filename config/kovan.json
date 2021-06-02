@@ -1,5 +1,7 @@
 {
     "network": "kovan",
-    "bridge_address": "0x1d750369c91b129524B68f308512b0FE2C903d71",
-    "start_block": 24852856
+    "erc20_bridge_address": "0x1d750369c91b129524B68f308512b0FE2C903d71",
+    "eth_bridge_address": "0x76bF1345224fE606E2aB38B8E52B83512328A9DF",
+    "eth_start_block": 24852601,
+    "erc20_start_block": 24852856
 }
