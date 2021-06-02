@@ -84,8 +84,8 @@ export function handleWithdrawToken(event: WithdrawTokenEvent): void {
 }
 
 export function handleMintAndCallTriggered(event: MintAndCallTriggeredEvent): void {
-    let mint = new MintAndCallTriggered(event.params.withdrawalId.toString())
-    mint.sucess = event.params.sucess
+    let mint = new MintAndCallTriggered(event.block.number.toString())
+    mint.success = event.params.success
     mint.sender = event.params.sender.toHexString()
     mint.dest = event.params.dest.toHexString()
     mint.amount = event.params.amount
