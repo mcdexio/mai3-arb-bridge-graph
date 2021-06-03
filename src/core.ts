@@ -1,60 +1,31 @@
 import { BigInt, ethereum, log, Address } from "@graphprotocol/graph-ts"
-import { WithdrawToken, TokenCreated, CustomTokenRegistered, Deposit, MintAndCallTriggered, L2ToL1Transaction, ActivateCustomToken, DeployToken, WithdrawRedirected, WithdrawExecuted } from '../generated/schema';
+import { WithdrawToken, Deposit, MintAndCallTriggered, L2ToL1Transaction, WithdrawRedirected, WithdrawExecuted, InboxMessageDelivered } from '../generated/schema';
 import {
   DepositToken,
-  ActivateCustomToken as ActivateCustomTokenEvent,
-  DeployToken as DeployTokenEvent,
   WithdrawRedirected as WithdrawRedirectedEvent,
   WithdrawExecuted as WithdrawExecutedEvent,
-  CustomTokenRegistered as CustomTokenRegisteredEvent,
-  TokenCreated as TokenCreatedEvent,
   WithdrawToken as WithdrawTokenEvent,
   MintAndCallTriggered as MintAndCallTriggeredEvent,
-  L2ToL1Transaction as L2ToL1TransactionEvent
+  L2ToL1Transaction as L2ToL1TransactionEvent,
+  InboxMessageDelivered as InboxMessageDeliveredEvent
 } from '../generated/mai3-arb-bridge/Bridge';
 
 export function handleDepositToken(event: DepositToken): void {
-  let deposit= new Deposit(event.params.seqNum.toString())
+  let id = event.transaction.hash.toHex() + "-" + event.logIndex.toString()
+  let deposit= new Deposit(id)
   deposit.destination = event.params.destination.toHexString()
   deposit.sender = event.params.sender.toHexString()
   deposit.value = event.params.value
+  deposit.seqNum = event.params.seqNum
   deposit.tokenAddress = event.params.tokenAddress.toHexString()
   deposit.blockNumber = event.block.number
   deposit.timestamp = event.block.timestamp
   deposit.save()
 }
 
-export function handleDeployToken(event: DeployTokenEvent): void {
-  let deploy = new DeployToken(event.params.seqNum.toString())
-  deploy.l1Address = event.params.l1Address.toHexString()
-  deploy.blockNumber = event.block.number
-  deploy.save()
-}
-
-export function handleActivateCustomToken(event: ActivateCustomTokenEvent): void {
-  let activate = new ActivateCustomToken(event.params.seqNum.toString())
-  activate.l1Address = event.params.l1Address.toHexString()
-  activate.l2Address = event.params.l2Address.toHexString()
-  activate.blockNumber = event.block.number
-  activate.save()
-}
-
-export function handleCustomTokenRegistered(event: CustomTokenRegisteredEvent): void {
-  let custom = new CustomTokenRegistered(event.params.l1Address.toHexString())
-  custom.l2Address = event.params.l2Address.toHexString()
-  custom.blockNumber = event.block.number
-  custom.save()
-}
-
-export function handleTokenCreated(event: TokenCreatedEvent): void {
-  let created = new TokenCreated(event.params.l1Address.toHexString())
-  created.l2Address = event.params.l2Address.toHexString()
-  created.blockNumber = event.block.number
-  created.save()
-}
-
 export function handleWithdrawRedirected(event: WithdrawRedirectedEvent): void {
-  let withdraw = new WithdrawRedirected(event.params.exitNum.toString())
+  let id = event.transaction.hash.toHex() + "-" + event.logIndex.toString()
+  let withdraw = new WithdrawRedirected(id)
   withdraw.user = event.params.user.toHexString()
   withdraw.liquidityProvider = event.params.liquidityProvider.toHexString()
   withdraw.erc20 = event.params.erc20.toHexString()
@@ -66,7 +37,8 @@ export function handleWithdrawRedirected(event: WithdrawRedirectedEvent): void {
 }
 
 export function handleWithdrawExecuted(event: WithdrawExecutedEvent): void {
-  let withdraw = new WithdrawExecuted(event.params.exitNum.toString())
+  let id = event.transaction.hash.toHex() + "-" + event.logIndex.toString()
+  let withdraw = new WithdrawExecuted(id)
   withdraw.initialDestination = event.params.initialDestination.toHexString()
   withdraw.destination = event.params.destination.toHexString()
   withdraw.erc20 = event.params.erc20.toHexString()
@@ -78,7 +50,8 @@ export function handleWithdrawExecuted(event: WithdrawExecutedEvent): void {
 }
 
 export function handleWithdrawToken(event: WithdrawTokenEvent): void {
-  let withdraw = new WithdrawToken(event.params.withdrawalId.toString())
+  let id = event.transaction.hash.toHex() + "-" + event.logIndex.toString()
+  let withdraw = new WithdrawToken(id)
   withdraw.l1Address = event.params.l1Address.toHexString()
   withdraw.destination = event.params.destination.toHexString()
   withdraw.exitNum = event.params.exitNum
@@ -89,7 +62,8 @@ export function handleWithdrawToken(event: WithdrawTokenEvent): void {
 }
 
 export function handleMintAndCallTriggered(event: MintAndCallTriggeredEvent): void {
-    let mint = new MintAndCallTriggered(event.block.number.toString())
+    let id = event.transaction.hash.toHex() + "-" + event.logIndex.toString()
+    let mint = new MintAndCallTriggered(id)
     mint.success = event.params.success
     mint.sender = event.params.sender.toHexString()
     mint.dest = event.params.dest.toHexString()
@@ -99,7 +73,8 @@ export function handleMintAndCallTriggered(event: MintAndCallTriggeredEvent): vo
 }
 
 export function handleL2ToL1Transaction(event: L2ToL1TransactionEvent): void {
-    let transaction = new L2ToL1Transaction(event.block.number.toString())
+    let id = event.transaction.hash.toHex() + "-" + event.logIndex.toString()
+    let transaction = new L2ToL1Transaction(id)
     transaction.caller = event.params.caller.toHexString()
     transaction.destination = event.params.destination.toHexString()
     transaction.uniqueId = event.params.uniqueId
@@ -109,5 +84,14 @@ export function handleL2ToL1Transaction(event: L2ToL1TransactionEvent): void {
     transaction.ethBlockNum = event.params.ethBlockNum
     transaction.timestamp = event.params.timestamp
     transaction.callvalue = event.params.callvalue
+    transaction.data = event.params.data.toHexString()
     transaction.save()
+}
+
+export function handleInboxMessageDelivered(event: InboxMessageDelivered): void {
+    let id = event.transaction.hash.toHex() + "-" + event.logIndex.toString()
+    let entity = new InboxMessageDelivered(id)
+    entity.messageNum = event.params.messageNum
+    entity.data = event.params.data.toHexString()
+    entity.save()
 }

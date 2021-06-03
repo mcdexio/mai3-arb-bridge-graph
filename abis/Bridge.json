@@ -3,6 +3,23 @@
         "anonymous": false,
         "inputs": [
           {
+            "indexed": true,
+            "name": "messageNum",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "InboxMessageDelivered",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+          {
             "indexed": false,
             "name": "caller",
             "type": "address"

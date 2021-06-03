@@ -5,30 +5,8 @@ type Deposit @entity {
   value: BigInt!
   tokenAddress: String!
   blockNumber: BigInt!
+  seqNum: BigInt!
   timestamp: BigInt!
-}
-
-type ActivateCustomToken @entity {
-  id: ID!
-  l1Address: String!
-  l2Address: String!
-  blockNumber: BigInt!
-}
-type CustomTokenRegistered @entity {
-  id: ID!
-  l2Address: String!
-  blockNumber: BigInt!
-}
-type TokenCreated @entity {
-  id: ID!
-  l2Address: String!
-  blockNumber: BigInt!
-}
-
-type DeployToken @entity {
-  id: ID!
-  l1Address: String!
-  blockNumber: BigInt!
 }
 
 type WithdrawRedirected @entity {
@@ -82,4 +60,11 @@ type L2ToL1Transaction @entity {
   ethBlockNum: BigInt!
   timestamp: BigInt!
   callvalue: BigInt!
+  data: String!
+}
+
+type InboxMessageDelivered @entity {
+  id: ID!
+  messageNum: BigInt!
+  data: String!
 }

@@ -23,10 +23,6 @@ dataSources:
       eventHandlers:
         - event: DepositToken(indexed address,address,indexed uint256,uint256,indexed address)
           handler: handleDepositToken
-        - event: ActivateCustomToken(indexed uint256,indexed address,address)
-          handler: handleActivateCustomToken
-        - event: DeployToken(indexed uint256,indexed address)
-          handler: handleDeployToken
         - event: WithdrawRedirected(indexed address,indexed address,address,uint256,indexed uint256)
           handler: handleWithdrawRedirected
         - event: WithdrawExecuted(indexed address,indexed address,address,uint256,indexed uint256)
@@ -49,14 +45,6 @@ dataSources:
         - name: Bridge
           file: ./abis/Bridge.json
       eventHandlers:
-        - event: DepositToken(indexed address,address,indexed uint256,uint256,indexed address)
-          handler: handleDepositToken
-        - event: ActivateCustomToken(indexed uint256,indexed address,address)
-          handler: handleActivateCustomToken
-        - event: DeployToken(indexed uint256,indexed address)
-          handler: handleDeployToken
-        - event: WithdrawRedirected(indexed address,indexed address,address,uint256,indexed uint256)
-          handler: handleWithdrawRedirected
-        - event: WithdrawExecuted(indexed address,indexed address,address,uint256,indexed uint256)
-          handler: handleWithdrawExecuted
+        - event: InboxMessageDelivered(indexed uint256,bytes)
+          handler: handleInboxMessageDelivered
       file: ./src/core.ts

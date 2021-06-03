@@ -21,10 +21,6 @@ dataSources:
         - name: Bridge
           file: ./abis/Bridge.json
       eventHandlers:
-        - event: CustomTokenRegistered(indexed address,indexed address)
-          handler: handleCustomTokenRegistered
-        - event: TokenCreated(indexed address,indexed address)
-          handler: handleTokenCreated
         - event: WithdrawToken(uint256,indexed address,uint256,indexed address,indexed uint256)
           handler: handleWithdrawToken
         - event: MintAndCallTriggered(bool,indexed address,indexed address,uint256,bytes)
