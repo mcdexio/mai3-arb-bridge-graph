@@ -20,6 +20,7 @@ export function handleDepositToken(event: DepositToken): void {
   deposit.value = event.params.value
   deposit.tokenAddress = event.params.tokenAddress.toHexString()
   deposit.blockNumber = event.block.number
+  deposit.timestamp = event.block.timestamp
   deposit.save()
 }
 
@@ -60,6 +61,7 @@ export function handleWithdrawRedirected(event: WithdrawRedirectedEvent): void {
   withdraw.amount = event.params.amount
   withdraw.exitNum = event.params.exitNum
   withdraw.blockNumber = event.block.number
+  withdraw.timestamp = event.block.timestamp
   withdraw.save()
 }
 
@@ -71,6 +73,7 @@ export function handleWithdrawExecuted(event: WithdrawExecutedEvent): void {
   withdraw.amount = event.params.amount
   withdraw.exitNum = event.params.exitNum
   withdraw.blockNumber = event.block.number
+  withdraw.timestamp = event.block.timestamp
   withdraw.save()
 }
 
@@ -81,6 +84,7 @@ export function handleWithdrawToken(event: WithdrawTokenEvent): void {
   withdraw.exitNum = event.params.exitNum
   withdraw.amount = event.params.amount
   withdraw.blockNumber = event.block.number
+  withdraw.timestamp = event.block.timestamp
   withdraw.save()
 }
 
@@ -105,4 +109,5 @@ export function handleL2ToL1Transaction(event: L2ToL1TransactionEvent): void {
     transaction.ethBlockNum = event.params.ethBlockNum
     transaction.timestamp = event.params.timestamp
     transaction.callvalue = event.params.callvalue
+    transaction.save()
 }

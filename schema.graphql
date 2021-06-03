@@ -5,6 +5,7 @@ type Deposit @entity {
   value: BigInt!
   tokenAddress: String!
   blockNumber: BigInt!
+  timestamp: BigInt!
 }
 
 type ActivateCustomToken @entity {
@@ -38,6 +39,7 @@ type WithdrawRedirected @entity {
   amount: BigInt!
   exitNum: BigInt!
   blockNumber: BigInt!
+  timestamp: BigInt!
 }
 type WithdrawExecuted @entity {
   id: ID!
@@ -47,6 +49,7 @@ type WithdrawExecuted @entity {
   amount: BigInt!
   exitNum: BigInt!
   blockNumber: BigInt!
+  timestamp: BigInt!
 }
 
 type WithdrawToken @entity {
@@ -56,6 +59,7 @@ type WithdrawToken @entity {
   exitNum: BigInt!
   amount: BigInt!
   blockNumber: BigInt!
+  timestamp: BigInt!
 }
 
 type MintAndCallTriggered @entity {
