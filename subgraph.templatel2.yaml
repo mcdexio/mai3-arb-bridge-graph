@@ -29,8 +29,6 @@ dataSources:
           handler: handleWithdrawToken
         - event: MintAndCallTriggered(bool,indexed address,indexed address,uint256,bytes)
           handler: handleMintAndCallTriggered
-        - event: L2ToL1Transaction(address,indexed address,indexed uint256,indexed uint256,uint256,uint256,uint256,uint256,uint256,bytes)
-          handler: handleL2ToL1Transaction
       file: ./src/core.ts
   - kind: ethereum/contract
     name: mai3-arb-bridge-eth
@@ -49,12 +47,6 @@ dataSources:
         - name: Bridge
           file: ./abis/Bridge.json
       eventHandlers:
-        - event: CustomTokenRegistered(indexed address,indexed address)
-          handler: handleCustomTokenRegistered
-        - event: TokenCreated(indexed address,indexed address)
-          handler: handleTokenCreated
-        - event: WithdrawToken(uint256,indexed address,uint256,indexed address,indexed uint256)
-          handler: handleWithdrawToken
-        - event: MintAndCallTriggered(bool,indexed address,indexed address,uint256,bytes)
-          handler: handleMintAndCallTriggered
+        - event: L2ToL1Transaction(address,indexed address,indexed uint256,indexed uint256,uint256,uint256,uint256,uint256,uint256,bytes)
+          handler: handleL2ToL1Transaction
       file: ./src/core.ts
