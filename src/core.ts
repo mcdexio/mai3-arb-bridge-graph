@@ -1,5 +1,5 @@
 import { BigInt, ethereum, log, Address } from "@graphprotocol/graph-ts"
-import { WithdrawToken, Deposit, MintAndCallTriggered, L2ToL1Transaction, WithdrawRedirected, WithdrawExecuted, InboxMessageDelivered, MessageDelivered } from '../generated/schema';
+import { WithdrawToken, Deposit, MintAndCallTriggered, L2ToL1Transaction, WithdrawRedirected, WithdrawExecuted, InboxMessageDelivered } from '../generated/schema';
 import {
   DepositToken,
   WithdrawRedirected as WithdrawRedirectedEvent,
@@ -8,7 +8,6 @@ import {
   MintAndCallTriggered as MintAndCallTriggeredEvent,
   L2ToL1Transaction as L2ToL1TransactionEvent,
   InboxMessageDelivered as InboxMessageDeliveredEvent,
-  MessageDelivered as MessageDeliveredEvent
 } from '../generated/mai3-arb-bridge/Bridge';
 
 export function handleDepositToken(event: DepositToken): void {
@@ -21,6 +20,7 @@ export function handleDepositToken(event: DepositToken): void {
   deposit.tokenAddress = event.params.tokenAddress.toHexString()
   deposit.blockNumber = event.block.number
   deposit.timestamp = event.block.timestamp
+  deposit.txHash = event.transaction.hash.toHex()
   deposit.save()
 }
 
@@ -34,6 +34,7 @@ export function handleWithdrawRedirected(event: WithdrawRedirectedEvent): void {
   withdraw.exitNum = event.params.exitNum
   withdraw.blockNumber = event.block.number
   withdraw.timestamp = event.block.timestamp
+  withdraw.txHash = event.transaction.hash.toHex()
   withdraw.save()
 }
 
@@ -46,6 +47,7 @@ export function handleWithdrawExecuted(event: WithdrawExecutedEvent): void {
   withdraw.amount = event.params.amount
   withdraw.exitNum = event.params.exitNum
   withdraw.blockNumber = event.block.number
+  withdraw.txHash = event.transaction.hash.toHex()
   withdraw.timestamp = event.block.timestamp
   withdraw.save()
 }
@@ -58,6 +60,7 @@ export function handleWithdrawToken(event: WithdrawTokenEvent): void {
   withdraw.exitNum = event.params.exitNum
   withdraw.amount = event.params.amount
   withdraw.blockNumber = event.block.number
+  withdraw.txHash = event.transaction.hash.toHex()
   withdraw.timestamp = event.block.timestamp
   withdraw.save()
 }
@@ -85,6 +88,7 @@ export function handleL2ToL1Transaction(event: L2ToL1TransactionEvent): void {
     transaction.ethBlockNum = event.params.ethBlockNum
     transaction.timestamp = event.params.timestamp
     transaction.callvalue = event.params.callvalue
+    transaction.txHash = event.transaction.hash.toHex()
     transaction.data = event.params.data.toHexString()
     transaction.save()
 }
@@ -93,18 +97,11 @@ export function handleInboxMessageDelivered(event: InboxMessageDeliveredEvent): 
     let id = event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     let entity = new InboxMessageDelivered(id)
     entity.messageNum = event.params.messageNum
+    entity.from = event.transaction.from.toHexString()
+    entity.value = event.transaction.value
     entity.data = event.params.data.toHexString()
+    entity.txHash = event.transaction.hash.toHex()
+    entity.blockNumber = event.block.number
+    entity.timestamp = event.block.timestamp
     entity.save()
-}
-
-export function handleMessageDelivered(event: MessageDeliveredEvent): void {
-    let id = event.transaction.hash.toHex() + "-" + event.logIndex.toString()
-    let entity = new MessageDelivered(id)
-    entity.messageIndex = event.params.messageIndex
-    entity.beforeInboxAcc = event.params.beforeInboxAcc.toHexString()
-    entity.inbox = event.params.inbox.toHexString()
-    entity.kind = event.params.kind
-    entity.sender = event.params.sender.toHexString()
-    entity.messageData = event.params.messageDataHash.toHexString()
-    entity.save()   
 }

@@ -5,6 +5,7 @@ type Deposit @entity {
   value: BigInt!
   tokenAddress: String!
   blockNumber: BigInt!
+  txHash: String!
   seqNum: BigInt!
   timestamp: BigInt!
 }
@@ -16,6 +17,7 @@ type WithdrawRedirected @entity {
   erc20: String!
   amount: BigInt!
   exitNum: BigInt!
+  txHash: String!
   blockNumber: BigInt!
   timestamp: BigInt!
 }
@@ -26,6 +28,7 @@ type WithdrawExecuted @entity {
   erc20: String!
   amount: BigInt!
   exitNum: BigInt!
+  txHash: String!
   blockNumber: BigInt!
   timestamp: BigInt!
 }
@@ -36,6 +39,7 @@ type WithdrawToken @entity {
   destination: String!
   exitNum: BigInt!
   amount: BigInt!
+  txHash: String!
   blockNumber: BigInt!
   timestamp: BigInt!
 }
@@ -58,6 +62,7 @@ type L2ToL1Transaction @entity {
   indexInBatch: BigInt!
   arbBlockNum: BigInt!
   ethBlockNum: BigInt!
+  txHash: String!
   timestamp: BigInt!
   callvalue: BigInt!
   data: String!
@@ -67,14 +72,9 @@ type InboxMessageDelivered @entity {
   id: ID!
   messageNum: BigInt!
   data: String!
-}
-
-type MessageDelivered @entity {
-  id: ID!
-  messageIndex: BigInt!
-  beforeInboxAcc: String!
-  inbox: String!
-  kind: Int!
-  sender: String!
-  messageData: String!
+  from: String!
+  value: BigInt!
+  txHash: String!
+  timestamp: BigInt!
+  blockNumber: BigInt!
 }
