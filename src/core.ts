@@ -1,5 +1,5 @@
 import { BigInt, ethereum, log, Address } from "@graphprotocol/graph-ts"
-import { WithdrawToken, Deposit, MintAndCallTriggered, L2ToL1Transaction, WithdrawRedirected, WithdrawExecuted, InboxMessageDelivered } from '../generated/schema';
+import { WithdrawToken, Deposit, MintAndCallTriggered, L2ToL1Transaction, WithdrawRedirected, WithdrawExecuted, InboxMessageDelivered, MessageDelivered } from '../generated/schema';
 import {
   DepositToken,
   WithdrawRedirected as WithdrawRedirectedEvent,
@@ -7,7 +7,8 @@ import {
   WithdrawToken as WithdrawTokenEvent,
   MintAndCallTriggered as MintAndCallTriggeredEvent,
   L2ToL1Transaction as L2ToL1TransactionEvent,
-  InboxMessageDelivered as InboxMessageDeliveredEvent
+  InboxMessageDelivered as InboxMessageDeliveredEvent,
+  MessageDelivered as MessageDeliveredEvent
 } from '../generated/mai3-arb-bridge/Bridge';
 
 export function handleDepositToken(event: DepositToken): void {
@@ -88,10 +89,22 @@ export function handleL2ToL1Transaction(event: L2ToL1TransactionEvent): void {
     transaction.save()
 }
 
-export function handleInboxMessageDelivered(event: InboxMessageDelivered): void {
+export function handleInboxMessageDelivered(event: InboxMessageDeliveredEvent): void {
     let id = event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     let entity = new InboxMessageDelivered(id)
     entity.messageNum = event.params.messageNum
     entity.data = event.params.data.toHexString()
     entity.save()
+}
+
+export function handleMessageDelivered(event: MessageDeliveredEvent): void {
+    let id = event.transaction.hash.toHex() + "-" + event.logIndex.toString()
+    let entity = new MessageDelivered(id)
+    entity.messageIndex = event.params.messageIndex
+    entity.beforeInboxAcc = event.params.beforeInboxAcc.toHexString()
+    entity.inbox = event.params.inbox.toHexString()
+    entity.kind = event.params.kind
+    entity.sender = event.params.sender.toHexString()
+    entity.messageData = event.params.messageDataHash.toHexString()
+    entity.save()   
 }

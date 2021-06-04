@@ -47,4 +47,6 @@ dataSources:
       eventHandlers:
         - event: InboxMessageDelivered(indexed uint256,bytes)
           handler: handleInboxMessageDelivered
+        - event: MessageDelivered(indexed uint256,indexed bytes32,address,uint8,address,bytes32)
+          handler: handleMessageDelivered
       file: ./src/core.ts

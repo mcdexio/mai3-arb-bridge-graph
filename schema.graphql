@@ -68,3 +68,13 @@ type InboxMessageDelivered @entity {
   messageNum: BigInt!
   data: String!
 }
+
+type MessageDelivered @entity {
+  id: ID!
+  messageIndex: BigInt!
+  beforeInboxAcc: String!
+  inbox: String!
+  kind: Int!
+  sender: String!
+  messageData: String!
+}
