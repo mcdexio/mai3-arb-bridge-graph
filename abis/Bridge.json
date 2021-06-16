@@ -1,346 +1,130 @@
 [
-    {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "name": "messageIndex",
-            "type": "uint256"
-          },
-          {
-            "indexed": true,
-            "name": "beforeInboxAcc",
-            "type": "bytes32"
-          },
-          {
-            "indexed": false,
-            "name": "inbox",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "kind",
-            "type": "uint8"
-          },
-          {
-            "indexed": false,
-            "name": "sender",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "messageDataHash",
-            "type": "bytes32"
-          }
-        ],
-        "name": "MessageDelivered",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "name": "messageNum",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "name": "data",
-            "type": "bytes"
-          }
-        ],
-        "name": "InboxMessageDelivered",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "name": "caller",
-            "type": "address"
-          },
-          {
-            "indexed": true,
-            "name": "destination",
-            "type": "address"
-          },
-          {
-            "indexed": true,
-            "name": "uniqueId",
-            "type": "uint256"
-          },
-          {
-            "indexed": true,
-            "name": "batchNumber",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "name": "indexInBatch",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "name": "arbBlockNum",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "name": "ethBlockNum",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "name": "timestamp",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "name": "callvalue",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "name": "data",
-            "type": "bytes"
-          }
-        ],
-        "name": "L2ToL1Transaction",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "name": "success",
-            "type": "bool"
-          },
-          {
-            "indexed": true,
-            "name": "sender",
-            "type": "address"
-          },
-          {
-            "indexed": true,
-            "name": "dest",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "amount",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "name": "callHookData",
-            "type": "bytes"
-          }
-        ],
-        "name": "MintAndCallTriggered",
-        "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "name": "withdrawalId",
-          "type": "uint256"
-        },
-        {
-          "indexed": true,
-          "name": "l1Address",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "name": "amount",
-          "type": "uint256"
-        },
-        {
-          "indexed": true,
-          "name": "destination",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "name": "exitNum",
-          "type": "uint256"
-        }
-      ],
-      "name": "WithdrawToken",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "name": "l1Address",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "name": "l2Address",
-          "type": "address"
-        }
-      ],
-      "name": "CustomTokenRegistered",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "name": "l1Address",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "name": "l2Address",
-          "type": "address"
-        }
-      ],
-      "name": "TokenCreated",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "name": "seqNum",
-          "type": "uint256"
-        },
-        {
-          "indexed": true,
-          "name": "l1Address",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "name": "l2Address",
-          "type": "address"
-        }
-      ],
-      "name": "ActivateCustomToken",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "name": "seqNum",
-          "type": "uint256"
-        },
-        {
-          "indexed": true,
-          "name": "l1Address",
-          "type": "address"
-        }
-      ],
-      "name": "DeployToken",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "name": "user",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "name": "liquidityProvider",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "name": "erc20",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "name": "amount",
-          "type": "uint256"
-        },
-        {
-          "indexed": true,
-          "name": "exitNum",
-          "type": "uint256"
-        }
-      ],
-      "name": "WithdrawRedirected",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "name": "initialDestination",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "name": "destination",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "name": "erc20",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "name": "amount",
-          "type": "uint256"
-        },
-        {
-          "indexed": true,
-          "name": "exitNum",
-          "type": "uint256"
-        }
-      ],
-      "name": "WithdrawExecuted",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "name": "destination",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "name": "sender",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "name": "seqNum",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "name": "value",
-          "type": "uint256"
-        },
-        {
-          "indexed": true,
-          "name": "tokenAddress",
-          "type": "address"
-        }
-      ],
-      "name": "DepositToken",
-      "type": "event"
-    }
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "_from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "_transferId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "_amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "_data",
+        "type": "bytes"
+      }
+    ],
+    "name": "OutboundTransferInitiated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "_from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "_transferId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "_amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "_data",
+        "type": "bytes"
+      }
+    ],
+    "name": "InboundTransferFinalized",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "_from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "_seqNum",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "_data",
+        "type": "bytes"
+      }
+    ],
+    "name": "TxToL1",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "_from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "_seqNum",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "_data",
+        "type": "bytes"
+      }
+    ],
+    "name": "TxToL2",
+    "type": "event"
+  }
 ]

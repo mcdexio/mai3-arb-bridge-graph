@@ -2,7 +2,7 @@
     "name": "mai3-arb-bridge-graph",
     "version": "0.1.0",
     "scripts": {
-      "prepare:kovan": "mustache config/kovan.json subgraph.templatel1.yaml > subgraph.yaml",
+      "prepare:rinkeby": "mustache config/rinkeby.json subgraph.templatel1.yaml > subgraph.yaml",
       "prepare:arb": "mustache config/arb.json subgraph.templatel2.yaml > subgraph.yaml",
       "create": "graph create mcdexio/mai3-arb-bridge --node https://api.thegraph.com/deploy/",
       "create-local": "graph create mcdexio/mai3-arb-bridge --node http://10.30.206.10:9020",

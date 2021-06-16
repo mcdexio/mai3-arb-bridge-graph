@@ -8,41 +8,44 @@ dataSources:
     name: mai3-arb-bridge
     network: {{network}}
     source:
-      address: '{{erc20_bridge_address}}'
-      abi: Bridge
-      startBlock: {{erc20_start_block}}
+      address: '{{gateway_route_address}}'
+      abi: Route
+      startBlock: {{start_block}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
-        - Deposit
+        - Gateway
       abis:
-        - name: Bridge
-          file: ./abis/Bridge.json
+        - name: Route
+          file: ./abis/GatewayRoute.json
       eventHandlers:
-        - event: WithdrawToken(uint256,indexed address,uint256,indexed address,indexed uint256)
-          handler: handleWithdrawToken
-        - event: MintAndCallTriggered(bool,indexed address,indexed address,uint256,bytes)
-          handler: handleMintAndCallTriggered
+        - event: GatewaySet(indexed address,indexed address)
+          handler: handleGatewaySet
+        - event: DefaultGatewayUpdated(address)
+          handler: handleDefaultGatewayUpdated
       file: ./src/core.ts
+templates:
   - kind: ethereum/contract
-    name: mai3-arb-bridge-eth
+    name: Bridge
     network: {{network}}
     source:
-      address: '{{eth_bridge_address}}'
       abi: Bridge
-      startBlock: {{eth_start_block}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
-        - Deposit
+        - InboundTransferFinalized
       abis:
         - name: Bridge
           file: ./abis/Bridge.json
       eventHandlers:
-        - event: L2ToL1Transaction(address,indexed address,indexed uint256,indexed uint256,uint256,uint256,uint256,uint256,uint256,bytes)
-          handler: handleL2ToL1Transaction
+        - event: TxToL1(indexed address,indexed address,indexed uint256,bytes)
+          handler: handleTxToL1
+        - event: OutboundTransferInitiated(address,indexed address,indexed address,indexed uint256,uint256,bytes)
+          handler: handleOutboundTransferInitiated
+        - event: InboundTransferFinalized(address,indexed address,indexed address,indexed uint256,uint256,bytes)
+          handler: handleInboundTransferFinalized
       file: ./src/core.ts

@@ -1,0 +1,31 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "l1Token",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "gateway",
+        "type": "address"
+      }
+    ],
+    "name": "GatewaySet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "newDefaultGateway",
+        "type": "address"
+      }
+    ],
+    "name": "DefaultGatewayUpdated",
+    "type": "event"
+  }
+]

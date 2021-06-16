@@ -1,79 +1,52 @@
-type Deposit @entity {
+type Gateway @entity {
   id: ID!
-  destination: String!
-  sender: String!
-  value: BigInt!
-  tokenAddress: String!
-  blockNumber: BigInt!
+  token: String!
+  gateway: String!
   txHash: String!
-  seqNum: BigInt!
   timestamp: BigInt!
-}
-
-type WithdrawRedirected @entity {
-  id: ID!
-  user: String!
-  liquidityProvider: String!
-  erc20: String!
-  amount: BigInt!
-  exitNum: BigInt!
-  txHash: String!
-  blockNumber: BigInt!
-  timestamp: BigInt!
-}
-type WithdrawExecuted @entity {
-  id: ID!
-  initialDestination: String!
-  destination: String!
-  erc20: String!
-  amount: BigInt!
-  exitNum: BigInt!
-  txHash: String!
-  blockNumber: BigInt!
-  timestamp: BigInt!
-}
-
-type WithdrawToken @entity {
-  id: ID!
-  l1Address: String!
-  destination: String!
-  exitNum: BigInt!
-  amount: BigInt!
-  txHash: String!
-  blockNumber: BigInt!
-  timestamp: BigInt!
-}
-
-type MintAndCallTriggered @entity {
-  id: ID!
-  success: Boolean!
-  sender: String!
-  dest: String!
-  amount: BigInt!
   blockNumber: BigInt!
 }
 
-type L2ToL1Transaction @entity {
+type DefaultGateway @entity {
   id: ID!
-  caller: String!
-  destination: String!
-  uniqueId: BigInt!
-  batchNumber: BigInt!
-  indexInBatch: BigInt!
-  arbBlockNum: BigInt!
-  ethBlockNum: BigInt!
+  gateway: String!
   txHash: String!
   timestamp: BigInt!
-  callvalue: BigInt!
-  data: String!
+  blockNumber: BigInt!
 }
 
-type InboxMessageDelivered @entity {
+type TxToL1 @entity {
   id: ID!
-  messageNum: BigInt!
-  data: String!
   from: String!
-  value: BigInt!
+  to: String!
+  seqNum: BigInt!
+  data: String!
+  txHash: String!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+}
+
+type InboundTransferFinalized @entity {
+  id: ID!
+  token: String!
+  from: String!
+  to: String!
+  transferId: BigInt!
+  amount: BigInt!
+  data: String!
+  txHash: String!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+}
+
+type OutboundTransferInitiated @entity {
+  id: ID!
+  token: String!
+  from: String!
+  to: String!
+  transferId: BigInt!
+  amount: BigInt!
+  data: String!
   txHash: String!
   timestamp: BigInt!
   blockNumber: BigInt!
