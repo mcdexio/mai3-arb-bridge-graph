@@ -25,6 +25,17 @@ type TxToL1 @entity {
   blockNumber: BigInt!
 }
 
+type TxToL2 @entity {
+  id: ID!
+  from: String!
+  to: String!
+  seqNum: BigInt!
+  data: String!
+  txHash: String!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+}
+
 type InboundTransferFinalized @entity {
   id: ID!
   token: String!
