@@ -1,5 +1,5 @@
 import { BigInt, ethereum, log, Address } from "@graphprotocol/graph-ts"
-import { InboundTransferFinalized, OutboundTransferInitiated, TxToL1 } from '../generated/schema';
+import { InboundTransferFinalized, OutboundTransferInitiated, TxToL1, TxToL2 } from '../generated/schema';
 import {
   TxToL1 as TxToL1Event,
   TxToL2 as TxToL2Event,
@@ -22,7 +22,7 @@ export function handleTxToL1(event: TxToL1Event): void {
 
 export function handleTxToL2(event: TxToL2Event): void {
   let id = event.transaction.hash.toHex() + "-" + event.logIndex.toString()
-  let entity = new TxToL1(id)
+  let entity = new TxToL2(id)
   entity.from = event.params._from.toHexString()
   entity.to = event.params._to.toHexString()
   entity.seqNum = event.params._seqNum
