@@ -1,5 +1,7 @@
 {
     "network": "arb",
     "gateway_route_address": "0x9413AD42910c1eA60c737dB5f58d1C504498a3cD",
-    "start_block": 123
+    "arb_sys_address": "0x0000000000000000000000000000000000000064",
+    "start_block": 123,
+    "arb_sys_start_block": 123
 }

@@ -1,0 +1,59 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "caller",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "destination",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "uniqueId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "batchNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "indexInBatch",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "arbBlockNum",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "ethBlockNum",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "timestamp",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "callvalue",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "data",
+        "type": "bytes"
+      }
+    ],
+    "name": "L2ToL1Transaction",
+    "type": "event"
+  }
+]
