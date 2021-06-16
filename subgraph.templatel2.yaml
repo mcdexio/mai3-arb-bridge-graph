@@ -25,7 +25,7 @@ dataSources:
           handler: handleGatewaySet
         - event: DefaultGatewayUpdated(address)
           handler: handleDefaultGatewayUpdated
-      file: ./src/core.ts
+      file: ./src/route.ts
 templates:
   - kind: ethereum/contract
     name: Bridge
@@ -48,4 +48,4 @@ templates:
           handler: handleOutboundTransferInitiated
         - event: InboundTransferFinalized(address,indexed address,indexed address,indexed uint256,uint256,bytes)
           handler: handleInboundTransferFinalized
-      file: ./src/core.ts
+      file: ./src/bridge.ts

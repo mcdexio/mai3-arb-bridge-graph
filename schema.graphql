@@ -1,7 +1,6 @@
 type Gateway @entity {
   id: ID!
-  token: String!
-  gateway: String!
+  tokens: [String!]
   txHash: String!
   timestamp: BigInt!
   blockNumber: BigInt!
