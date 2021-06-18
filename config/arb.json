@@ -2,6 +2,8 @@
     "network": "arb",
     "gateway_route_address": "0x9413AD42910c1eA60c737dB5f58d1C504498a3cD",
     "arb_sys_address": "0x0000000000000000000000000000000000000064",
+    "init_gateway_address": "0x195C107F3F75c4C93Eba7d9a1312F19305d6375f",
+    "init_gateway_start_block": 122,
     "start_block": 123,
     "arb_sys_start_block": 123
 }

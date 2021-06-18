@@ -16,6 +16,7 @@ type DefaultGateway @entity {
 
 type TxToL1 @entity {
   id: ID!
+  gateway: String!
   from: String!
   to: String!
   seqNum: BigInt!
@@ -27,6 +28,7 @@ type TxToL1 @entity {
 
 type TxToL2 @entity {
   id: ID!
+  gateway: String!
   from: String!
   to: String!
   seqNum: BigInt!
@@ -38,6 +40,7 @@ type TxToL2 @entity {
 
 type InboundTransferFinalized @entity {
   id: ID!
+  gateway: String!
   token: String!
   from: String!
   to: String!
@@ -51,6 +54,7 @@ type InboundTransferFinalized @entity {
 
 type OutboundTransferInitiated @entity {
   id: ID!
+  gateway: String!
   token: String!
   from: String!
   to: String!

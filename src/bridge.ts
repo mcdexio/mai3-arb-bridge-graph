@@ -10,6 +10,7 @@ import {
 export function handleTxToL1(event: TxToL1Event): void {
   let id = event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   let entity = new TxToL1(id)
+  entity.gateway = event.address.toHexString()
   entity.from = event.params._from.toHexString()
   entity.to = event.params._to.toHexString()
   entity.seqNum = event.params._seqNum
@@ -23,6 +24,7 @@ export function handleTxToL1(event: TxToL1Event): void {
 export function handleTxToL2(event: TxToL2Event): void {
   let id = event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   let entity = new TxToL2(id)
+  entity.gateway = event.address.toHexString()
   entity.from = event.params._from.toHexString()
   entity.to = event.params._to.toHexString()
   entity.seqNum = event.params._seqNum
@@ -36,6 +38,7 @@ export function handleTxToL2(event: TxToL2Event): void {
 export function handleOutboundTransferInitiated(event: OutboundTransferInitiatedEvent): void {
   let id = event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   let entity = new OutboundTransferInitiated(id)
+  entity.gateway = event.address.toHexString()
   entity.token = event.params.token.toHexString()
   entity.from = event.params._from.toHexString()
   entity.to = event.params._to.toHexString()
@@ -51,6 +54,7 @@ export function handleOutboundTransferInitiated(event: OutboundTransferInitiated
 export function handleInboundTransferFinalized(event: InboundTransferFinalizedEvent): void {
   let id = event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   let entity = new InboundTransferFinalized(id)
+  entity.gateway = event.address.toHexString()
   entity.token = event.params.token.toHexString()
   entity.from = event.params._from.toHexString()
   entity.to = event.params._to.toHexString()

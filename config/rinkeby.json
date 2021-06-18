@@ -1,5 +1,7 @@
 {
     "network": "rinkeby",
     "gateway_route_address": "0x70C143928eCfFaf9F5b406f7f4fC28Dc43d68380",
+    "init_gateway_address": "0x91169dbb45e6804743f94609de50d511c437572e",
+    "init_gateway_start_block": 8722806,
     "start_block": 8722804
 }

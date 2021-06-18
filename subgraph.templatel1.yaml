@@ -26,6 +26,30 @@ dataSources:
         - event: DefaultGatewayUpdated(address)
           handler: handleDefaultGatewayUpdated
       file: ./src/route.ts
+  - kind: ethereum/contract
+    name: Bridge
+    network: {{network}}
+    source:
+      address: '{{init_gateway_address}}'
+      abi: Bridge
+      startBlock: {{init_gateway_start_block}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - InboundTransferFinalized
+      abis:
+        - name: Bridge
+          file: ./abis/Bridge.json
+      eventHandlers:
+        - event: TxToL2(indexed address,indexed address,indexed uint256,bytes)
+          handler: handleTxToL2
+        - event: OutboundTransferInitiated(address,indexed address,indexed address,indexed uint256,uint256,bytes)
+          handler: handleOutboundTransferInitiated
+        - event: InboundTransferFinalized(address,indexed address,indexed address,indexed uint256,uint256,bytes)
+          handler: handleInboundTransferFinalized
+      file: ./src/bridge.ts
 templates:
   - kind: ethereum/contract
     name: Bridge

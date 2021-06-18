@@ -46,6 +46,30 @@ dataSources:
         - event: L2ToL1Transaction(address,indexed address,indexed uint256,indexed uint256,uint256,uint256,uint256,uint256,uint256,bytes)
           handler: handleL2ToL1Transaction
       file: ./src/arbSys.ts
+  - kind: ethereum/contract
+    name: Bridge
+    network: {{network}}
+    source:
+      address: '{{init_gateway_address}}'
+      abi: Bridge
+      startBlock: {{init_gateway_start_block}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - InboundTransferFinalized
+      abis:
+        - name: Bridge
+          file: ./abis/Bridge.json
+      eventHandlers:
+        - event: TxToL1(indexed address,indexed address,indexed uint256,bytes)
+          handler: handleTxToL1
+        - event: OutboundTransferInitiated(address,indexed address,indexed address,indexed uint256,uint256,bytes)
+          handler: handleOutboundTransferInitiated
+        - event: InboundTransferFinalized(address,indexed address,indexed address,indexed uint256,uint256,bytes)
+          handler: handleInboundTransferFinalized
+      file: ./src/bridge.ts
 templates:
   - kind: ethereum/contract
     name: Bridge
