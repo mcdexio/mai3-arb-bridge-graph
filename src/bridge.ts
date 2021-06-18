@@ -1,5 +1,5 @@
 import { BigInt, ethereum, log, Address } from "@graphprotocol/graph-ts"
-import { InboundTransferFinalized, OutboundTransferInitiated, TxToL1, TxToL2 } from '../generated/schema';
+import { InboundTransferFinalized, OutboundTransferInitiated, TxToL1, TxToL2, L2ToL1Transaction } from '../generated/schema';
 import {
   TxToL1 as TxToL1Event,
   TxToL2 as TxToL2Event,
@@ -52,7 +52,7 @@ export function handleOutboundTransferInitiated(event: OutboundTransferInitiated
 
   // from OutboundTransferInitiated with the same transaferId/uniqueId
   let l2TransactionId = event.transaction.hash.toHex() + "-" + event.params._transferId.toString()
-  let l2Transaction = OutboundTransferInitiated.load(l2TransactionId)
+  let l2Transaction = L2ToL1Transaction.load(l2TransactionId)
   if (l2Transaction === null) {
     return
   }

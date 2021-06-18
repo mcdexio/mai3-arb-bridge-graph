@@ -1,5 +1,5 @@
 import { BigInt, ethereum, log, Address } from "@graphprotocol/graph-ts"
-import { L2ToL1Transaction, OutboundTransferInitiated } from '../generated/schema';
+import { L2ToL1Transaction } from '../generated/schema';
 import {
     L2ToL1Transaction as L2ToL1TransactionEvent,
 } from '../generated/arb-sys/ArbSys';
