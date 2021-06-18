@@ -49,6 +49,18 @@ export function handleOutboundTransferInitiated(event: OutboundTransferInitiated
   entity.timestamp = event.block.timestamp
   entity.txHash = event.transaction.hash.toHex()
   entity.save()
+
+  // from OutboundTransferInitiated with the same transaferId/uniqueId
+  let l2TransactionId = event.transaction.hash.toHex() + "-" + event.params._transferId.toString()
+  let l2Transaction = OutboundTransferInitiated.load(l2TransactionId)
+  if (l2Transaction === null) {
+    return
+  }
+  l2Transaction.token = event.params.token.toHexString()
+  l2Transaction.from = event.params._from.toHexString()
+  l2Transaction.to = event.params._to.toHexString()
+  l2Transaction.amount = event.params._amount
+  l2Transaction.save()
 }
 
 export function handleInboundTransferFinalized(event: InboundTransferFinalizedEvent): void {

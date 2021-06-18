@@ -78,4 +78,10 @@ type L2ToL1Transaction @entity {
   timestamp: BigInt!
   callvalue: BigInt!
   data: String!
+  txHash: String!
+  # from OutboundTransferInitiated with the same transaferId/uniqueId
+  token: String!
+  from: String!
+  to: String!
+  amount: BigInt!
 }
