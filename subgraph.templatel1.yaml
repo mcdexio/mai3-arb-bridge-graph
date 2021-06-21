@@ -49,6 +49,8 @@ dataSources:
           handler: handleOutboundTransferInitiated
         - event: InboundTransferFinalized(address,indexed address,indexed address,indexed uint256,uint256,bytes)
           handler: handleInboundTransferFinalized
+        - event: MessageDelivered(indexed uin256,indexed bytes32,address,uint8,address,bytes32)
+          handler: handleMessageDelivered
       file: ./src/bridge.ts
 templates:
   - kind: ethereum/contract

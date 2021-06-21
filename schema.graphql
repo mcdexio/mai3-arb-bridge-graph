@@ -85,3 +85,14 @@ type L2ToL1Transaction @entity {
   to: String!
   amount: BigInt!
 }
+
+type MessageDelivered @entity {
+  id: ID!
+  messageIndex: BigInt!
+  beforeInboxAcc: String!
+  inbox: String!
+  kind: Int!
+  sender: String!
+  messageDataHash: String!
+  value: BigInt!
+}

@@ -1,10 +1,11 @@
 import { BigInt, ethereum, log, Address } from "@graphprotocol/graph-ts"
-import { InboundTransferFinalized, OutboundTransferInitiated, TxToL1, TxToL2, L2ToL1Transaction } from '../generated/schema';
+import { MessageDelivered, InboundTransferFinalized, OutboundTransferInitiated, TxToL1, TxToL2, L2ToL1Transaction } from '../generated/schema';
 import {
   TxToL1 as TxToL1Event,
   TxToL2 as TxToL2Event,
   OutboundTransferInitiated as OutboundTransferInitiatedEvent,
   InboundTransferFinalized as InboundTransferFinalizedEvent,
+  MessageDelivered as MessageDeliveredEvent,
 } from '../generated/templates/Bridge/Bridge';
 
 export function handleTxToL1(event: TxToL1Event): void {
@@ -76,5 +77,18 @@ export function handleInboundTransferFinalized(event: InboundTransferFinalizedEv
   entity.blockNumber = event.block.number
   entity.timestamp = event.block.timestamp
   entity.txHash = event.transaction.hash.toHex()
+  entity.save()
+}
+
+export function handleMessageDelivered(event: MessageDeliveredEvent): void {
+  let id = event.transaction.hash.toHex() + "-" + event.params.uniqueId.toString()
+  let entity = new MessageDelivered(id)
+  entity.messageIndex = event.params.messageIndex
+  entity.beforeInboxAcc = event.params.beforeInboxAcc.toHexString()
+  entity.inbox = event.params.inbox.toHexString()
+  entity.kind = event.params.kind
+  entity.sender = event.params.sender.toHexString()
+  entity.messageDataHash = event.params.messageDataHash.toHexString()
+  entity.value = event.transaction.value
   entity.save()
 }
