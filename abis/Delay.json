@@ -1,0 +1,56 @@
+[
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "messageNum",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "InboxMessageDelivered",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "messageIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "name": "beforeInboxAcc",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "inbox",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "kind",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "messageDataHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "MessageDelivered",
+      "type": "event"
+    }
+  ]
