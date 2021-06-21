@@ -95,4 +95,7 @@ type MessageDelivered @entity {
   sender: String!
   messageDataHash: String!
   value: BigInt!
+  txHash: String!
+  timestamp: BigInt!
+  blockNumber: BigInt!
 }
