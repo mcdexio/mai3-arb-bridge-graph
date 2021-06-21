@@ -96,3 +96,9 @@ type MessageDelivered @entity {
   messageDataHash: String!
   value: BigInt!
 }
+
+type InboxMessageDelivered @entity {
+  id: ID!
+  messageNum: BigInt!
+  data: String!
+}
