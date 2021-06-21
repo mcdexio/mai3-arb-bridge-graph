@@ -4,6 +4,6 @@
     "start_block": 8722804,
     "init_gateway_address": "0x91169dbb45e6804743f94609de50d511c437572e",
     "init_gateway_start_block": 8722806,
-    "inbox_address": "0x578BAde599406A8fE3d24Fd7f7211c0911F5B29e",
-    "inbox_start_block": 8722804
+    "delay_bridge_address": "0x9a28E783c47bBEB813F32B861A431d0776681E95",
+    "delay_bridge_start_block": 8722804
 }

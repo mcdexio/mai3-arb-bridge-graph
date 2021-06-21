@@ -51,12 +51,12 @@ dataSources:
           handler: handleInboundTransferFinalized
       file: ./src/bridge.ts
   - kind: ethereum/contract
-    name: Inbox
+    name: Delay
     network: {{network}}
     source:
-      address: '{{inbox_address}}'
-      abi: Inbox
-      startBlock: {{inbox_start_block}}
+      address: '{{delay_bridge_address}}'
+      abi: Delay
+      startBlock: {{delay_bridge_start_block}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -64,14 +64,12 @@ dataSources:
       entities:
         - MessageDelivered
       abis:
-        - name: Inbox
-          file: ./abis/Inbox.json
+        - name: Delay
+          file: ./abis/Delay.json
       eventHandlers:
-        - event: InboxMessageDelivered(indexed uint256,bytes)
-          handler: handleInboxMessageDelivered
         - event: MessageDelivered(indexed uint256,indexed bytes32,address,uint8,address,bytes32)
           handler: handleMessageDelivered
-      file: ./src/inbox.ts
+      file: ./src/delay.ts
 templates:
   - kind: ethereum/contract
     name: Bridge
