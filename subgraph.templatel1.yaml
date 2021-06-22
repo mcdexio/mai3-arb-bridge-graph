@@ -70,6 +70,28 @@ dataSources:
         - event: MessageDelivered(indexed uint256,indexed bytes32,address,uint8,address,bytes32)
           handler: handleMessageDelivered
       file: ./src/delay.ts
+  - kind: ethereum/contract
+    name: Outbox
+    network: {{network}}
+    source:
+      address: '{{outbox_address}}'
+      abi: Outbox
+      startBlock: {{outbox_start_block}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - OutBoxTransaction
+      abis:
+        - name: Outbox
+          file: ./abis/Outbox.json
+      eventHandlers:
+        - event: OutboxEntryCreated(indexed uint256,uint256,bytes32,uint256)
+          handler: handleOutboxEntryCreated
+        - event: OutBoxTransactionExecuted(indexed address,indexed address,indexed uint256,uint256)
+          handler: handleOutBoxTransactionExecuted
+      file: ./src/outbox.ts
 templates:
   - kind: ethereum/contract
     name: Bridge

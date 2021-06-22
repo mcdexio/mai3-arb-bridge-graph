@@ -1,0 +1,56 @@
+[
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "batchNum",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "outboxIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "outputRoot",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "numInBatch",
+          "type": "uint256"
+        }
+      ],
+      "name": "OutboxEntryCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "destAddr",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "l2Sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "outboxIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "transactionIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "OutBoxTransactionExecuted",
+      "type": "event"
+    }
+  ]

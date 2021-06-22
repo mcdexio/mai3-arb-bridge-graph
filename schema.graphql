@@ -99,3 +99,18 @@ type MessageDelivered @entity {
   timestamp: BigInt!
   blockNumber: BigInt!
 }
+
+type OutBoxTransaction @entity {
+  id: ID!
+  batchNum: BigInt!
+  outboxIndex: BigInt!
+  outputRoot: String!
+  numInBatch: BigInt!
+  withdrawBlock: BigInt!
+  destAddr: String!
+  l2Sender: String!
+  transactionIndex: BigInt!
+  executedBlock: BigInt!
+  executedTxHash: String!
+  executedTimestamp: BigInt!
+}
